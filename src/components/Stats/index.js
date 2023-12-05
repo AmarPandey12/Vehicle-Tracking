@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 
 function Stats() {
+    console.log('Calling login endpoint with token');
     const [allValues, setAllvalues] = useState({
         totalVehicles: 12099,
     })
