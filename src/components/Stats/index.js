@@ -18,7 +18,7 @@ function Stats() {
                   'Content-Type': 'application/json',
                   Accept: '*/*',
                 },
-                mode: 'cors'
+                mode: 'no-cors'
                 // body: JSON.stringify(payload)
             });
             const data = await res.json();
