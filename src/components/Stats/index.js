@@ -11,24 +11,25 @@ function Stats() {
     const token = '5560db8f4a2317dfb4690c5273a984098D637F85A0851AC11CC6D0450DC3A9CFB006FA40';
     const API = `https://hst-api.wialon.com/wialon/ajax.html?svc=token/login`
 
+    var payload = JSON.stringify({
+        token: token
+    })
+
     const getLoginToken = async(url) => {
-        const payload = {
-            "token": token 
-        }
         try{
-            const res = await fetch(url, {
+            const res = await fetch(url+ `&params=${payload}`, {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
                   Accept: '*/*',
                 },
-                body: JSON.stringify(payload),
                 mode: 'no-cors'
                 // body: JSON.stringify(payload)
             });
             const data = await res.json();
             console.log(data);
         }catch(err){
+            console.log('some error happened');
             console.log(err);
         }
     };
