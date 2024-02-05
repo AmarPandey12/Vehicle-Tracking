@@ -2,7 +2,7 @@ function Header(){
     return (
         <div className="dashboard-header">
             <nav className="navbar navbar-expand-lg bg-white fixed-top">
-                <a className="navbar-brand" href="index.html">Technoton</a>
+                <a className="navbar-brand" href="index.html">Tech</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

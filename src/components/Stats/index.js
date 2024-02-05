@@ -8,16 +8,16 @@ function Stats() {
     })
 
     const [eid, setEid] = useState('');
-    const token = '5560db8f4a2317dfb4690c5273a984098D637F85A0851AC11CC6D0450DC3A9CFB006FA40';
-    const API = `https://hst-api.wialon.com/wialon/ajax.html?svc=token/login`
+    // const token = '5560db8f4a2317dfb4690c5273a984098D637F85A0851AC11CC6D0450DC3A9CFB006FA40';
+    const API = `https://vehicle-tracking-server-production.up.railway.app/getVehicles?sid={sid}&b=stable&v=1.51`
 
-    var payload = JSON.stringify({
-        token: token
-    })
+    // var payload = JSON.stringify({
+    //     token: token
+    // })
 
-    const getLoginToken = async(url) => {
+    const getVehicleData = async(url) => {
         try{
-            const res = await fetch(url+ `&params=${payload}`, {
+            const res = await fetch(url+ `&sid=${payload}`, {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function Stats() {
         }
     };
     useEffect(()=>{
-        getLoginToken(API)
+        getVehicleData(API)
     }, []);
 
     return (
