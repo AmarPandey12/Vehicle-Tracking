@@ -26,7 +26,7 @@ function Stats() {
                 mode: 'no-cors'
                 // body: JSON.stringify(payload)
             });
-            const data = await res;
+            const data = await res.json();
             console.log(data);
         }catch(err){
             console.log('some error happened');
