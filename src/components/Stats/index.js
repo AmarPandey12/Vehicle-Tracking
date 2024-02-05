@@ -34,6 +34,7 @@ function Stats() {
         }
     };
     useEffect(()=>{
+        alert('hello');
         getVehicleData(API)
     }, []);
 
