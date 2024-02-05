@@ -9,7 +9,7 @@ function Stats() {
 
     const [eid, setEid] = useState('');
     // const token = '5560db8f4a2317dfb4690c5273a984098D637F85A0851AC11CC6D0450DC3A9CFB006FA40';
-    const API = `https://vehicle-tracking-server-production.up.railway.app/getVehicles?sid={sid}&b=stable&v=1.51`
+    const API = `https://vehicle-tracking-server-production.up.railway.app/getVehicles?sid=0460b311bb8374a3dd31018c4ee7719d&b=stable&v=1.51`
 
     // var payload = JSON.stringify({
     //     token: token
@@ -17,7 +17,7 @@ function Stats() {
 
     const getVehicleData = async(url) => {
         try{
-            const res = await fetch(url+ `&sid=${payload}`, {
+            const res = await fetch(url, {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
