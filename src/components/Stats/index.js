@@ -32,7 +32,7 @@ function Stats() {
             console.log('some error happened');
             console.log(err);
         }
-    };
+    }
     useEffect(()=>{
         alert('hello');
         getVehicleData(API)
