@@ -9,7 +9,7 @@ function Stats() {
 
     const [eid, setEid] = useState('');
     // const token = '5560db8f4a2317dfb4690c5273a984098D637F85A0851AC11CC6D0450DC3A9CFB006FA40';
-    const API = `https://vehicle-tracking-server-production.up.railway.app/getVehicles?sid=04cdeddc25b30cbef42afde1bd626e93&b=stable&v=1.51`
+    const API = `https://vehicle-tracking-server-production.up.railway.app/getVehicles?sid=047215a9ac4a47141da0bf743eea0ea2&b=stable&v=1.51`
 
     // var payload = JSON.stringify({
     //     token: token
