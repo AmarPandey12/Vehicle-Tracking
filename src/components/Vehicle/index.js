@@ -1,4 +1,40 @@
-function vehicleDetail() {
+import React, { useState, useEffect } from 'react';
+
+function VehicleDetail() {
+
+    const [allValues, setAllvalues] = useState({})
+    const str = window.location.search.substring(1);
+    console.log('>>> ', str);
+    
+    const API = `https://vehicle-tracking-server-production.up.railway.app/getVehicles?${str}&b=stable&v=1.51`
+
+    // var payload = JSON.stringify({
+    //     token: token
+    // })
+
+    const getVehicleData = async (url) => {
+        try {
+            const res = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: '*/*',
+                },
+                // body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            // console.log(data);
+            setAllvalues(data);
+        } catch (err) {
+            console.log('some error happened');
+            console.log(err);
+        }
+    }
+    useEffect(() => {
+        getVehicleData(API)
+    }, []);
+
+    // console.log(allValues);
     return (
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
@@ -13,73 +49,39 @@ function vehicleDetail() {
                                             <table className="table">
                                                 <thead className="bg-light">
                                                     <tr className="border-0">
-                                                        <th className="border-0">#</th>
-                                                        <th className="border-0">Image</th>
+                                                        <th className="border-0">Vehicle Id</th>
+                                                        {/* <th className="border-0">Image</th> */}
                                                         <th className="border-0">Vehicle Name</th>
-                                                        <th className="border-0">Vehicle Category</th>
-                                                        <th className="border-0">Engine</th>
+                                                        {/* <th className="border-0">Vehicle Category</th> */}
+                                                        <th className="border-0">Engine Status</th>
                                                         <th className="border-0">Fuel Level</th>
                                                         <th className="border-0">Location</th>
-                                                        <th className="border-0">Customer</th>
+                                                        <th className="border-0">Updated At</th>
                                                         <th className="border-0">Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>
-                                                            <div className="m-r-10"><img src="assets/images/product-pic.jpg" alt="user" className="rounded" width="45" /></div>
-                                                        </td>
-                                                        <td>Product #1 </td>
-                                                        <td>id000001 </td>
-                                                        <td>20</td>
-                                                        <td>$80.00</td>
-                                                        <td>27-08-2018 01:22:12</td>
-                                                        <td>Patricia J. King </td>
-                                                        <td><span className="badge-dot badge-brand mr-1"></span>InTransit </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>
-                                                            <div className="m-r-10"><img src="assets/images/product-pic-2.jpg" alt="user" className="rounded" width="45" /></div>
-                                                        </td>
-                                                        <td>Product #2 </td>
-                                                        <td>id000002 </td>
-                                                        <td>12</td>
-                                                        <td>$180.00</td>
-                                                        <td>25-08-2018 21:12:56</td>
-                                                        <td>Rachel J. Wicker </td>
-                                                        <td><span className="badge-dot badge-success mr-1"></span>Delivered </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>
-                                                            <div className="m-r-10"><img src="assets/images/product-pic-3.jpg" alt="user" className="rounded" width="45" /></div>
-                                                        </td>
-                                                        <td>Product #3 </td>
-                                                        <td>id000003 </td>
-                                                        <td>23</td>
-                                                        <td>$820.00</td>
-                                                        <td>24-08-2018 14:12:77</td>
-                                                        <td>Michael K. Ledford </td>
-                                                        <td><span className="badge-dot badge-success mr-1"></span>Delivered </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>
-                                                            <div className="m-r-10"><img src="assets/images/product-pic-4.jpg" alt="user" className="rounded" width="45" /></div>
-                                                        </td>
-                                                        <td>Product #4 </td>
-                                                        <td>id000004 </td>
-                                                        <td>34</td>
-                                                        <td>$340.00</td>
-                                                        <td>23-08-2018 09:12:35</td>
-                                                        <td>Michael K. Ledford </td>
-                                                        <td><span className="badge-dot badge-success mr-1"></span>Delivered </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="9"><a href="#" className="btn btn-outline-light float-right">View Details</a></td>
-                                                    </tr>
+                                                    {allValues.length > 0 &&
+                                                        allValues.map((element) => {
+                                                            console.log(element);
+                                                            return (
+                                                                <tr>
+                                                                    <td>{element.vehicle_id}</td>
+                                                                    {/* <td> */}
+                                                                        {/* <div className="m-r-10"><img src="assets/images/product-pic.jpg" alt="user" className="rounded" width="45" /></div> */}
+                                                                    {/* </td> */}
+                                                                    <td>{element.vehicle}</td>
+                                                                    {/* <td>id000001 </td> */}
+                                                                    <td>{element.sensor_data[0].value === 0 ? 'Off' : 'On'}</td>
+                                                                    <td>{element.sensor_data[2].value ? element.sensor_data[2].value + ' Ltr' : 'Not Available' }</td>
+                                                                    <td>{element.last_location_lat}, {element.last_location_long}</td>
+                                                                    <td>{element.Time} </td>
+                                                                    <td><span className="badge-dot badge-brand mr-1"></span>InTransit </td>
+                                                                </tr>
+                                                            );
+                                                        })
+                                                    }
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -94,4 +96,4 @@ function vehicleDetail() {
     )
 }
 
-export default vehicleDetail;
+export default VehicleDetail;

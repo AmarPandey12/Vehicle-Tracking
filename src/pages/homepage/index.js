@@ -8,7 +8,6 @@ function home(){
         <div class="dashboard-main-wrapper">
             <Header/>
             <Navbar/>
-            <Stats/>
             <Vehicle/>
         </div>
     )
