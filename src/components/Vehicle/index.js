@@ -23,7 +23,7 @@ function VehicleDetail() {
                 // body: JSON.stringify(payload)
             });
             const data = await res.json();
-            // console.log(data);
+            console.log(data);
             setAllvalues(data);
         } catch (err) {
             console.log('some error happened');
@@ -55,6 +55,7 @@ function VehicleDetail() {
                                                         {/* <th className="border-0">Vehicle Category</th> */}
                                                         <th className="border-0">Engine Status</th>
                                                         <th className="border-0">Fuel Level</th>
+                                                        <th className="border-0">Power Status</th>
                                                         <th className="border-0">Location</th>
                                                         <th className="border-0">Updated At</th>
                                                         <th className="border-0">Status</th>
@@ -72,8 +73,11 @@ function VehicleDetail() {
                                                                     {/* </td> */}
                                                                     <td>{element.vehicle}</td>
                                                                     {/* <td>id000001 </td> */}
-                                                                    <td>{element.sensor_data[0].value === 0 ? 'Off' : 'On'}</td>
-                                                                    <td>{element.sensor_data[2].value ? element.sensor_data[2].value + ' Ltr' : 'Not Available' }</td>
+                                                                    {/* <td>{element.sensor_data[0].value === 0 ? 'Off' : 'On'}</td> */}
+                                                                    <td>{element.sensor_data[0].value}</td>
+                                                                    {/* <td>{element.sensor_data[2].value ? element.sensor_data[2].value + ' Ltr' : 'Not Available' }</td> */}
+                                                                    <td>{element.sensor_data[1].value}</td>
+                                                                    <td>{element.sensor_data[2].value}</td>
                                                                     <td>{element.last_location_lat}, {element.last_location_long}</td>
                                                                     <td>{element.Time} </td>
                                                                     <td><span className="badge-dot badge-brand mr-1"></span>InTransit </td>
