@@ -49,13 +49,12 @@ function VehicleDetail() {
                                             <table className="table">
                                                 <thead className="bg-light">
                                                     <tr className="border-0">
-                                                        <th className="border-0">Vehicle Id</th>
-                                                        {/* <th className="border-0">Image</th> */}
                                                         <th className="border-0">Vehicle Name</th>
-                                                        {/* <th className="border-0">Vehicle Category</th> */}
                                                         <th className="border-0">Engine Status</th>
-                                                        <th className="border-0">Fuel Level</th>
-                                                        <th className="border-0">Power Status</th>
+                                                        <th className="border-0">Fuel Temparature</th>
+                                                        <th className="border-0">Fuel Volume Total</th>
+                                                        <th className="border-0">Power Supply Status</th>
+                                                        <th className="border-0">Power Supply Voltage</th>
                                                         <th className="border-0">Location</th>
                                                         <th className="border-0">Updated At</th>
                                                         <th className="border-0">Status</th>
@@ -67,20 +66,15 @@ function VehicleDetail() {
                                                             console.log(element);
                                                             return (
                                                                 <tr>
-                                                                    <td>{element.vehicle_id}</td>
-                                                                    {/* <td> */}
-                                                                        {/* <div className="m-r-10"><img src="assets/images/product-pic.jpg" alt="user" className="rounded" width="45" /></div> */}
-                                                                    {/* </td> */}
                                                                     <td>{element.vehicle}</td>
-                                                                    {/* <td>id000001 </td> */}
-                                                                    {/* <td>{element.sensor_data[0].value === 0 ? 'Off' : 'On'}</td> */}
                                                                     <td>{element.sensor_data[0].value}</td>
-                                                                    {/* <td>{element.sensor_data[2].value ? element.sensor_data[2].value + ' Ltr' : 'Not Available' }</td> */}
                                                                     <td>{element.sensor_data[1].value}</td>
                                                                     <td>{element.sensor_data[2].value}</td>
+                                                                    <td>{element.sensor_data[3].value}</td>
+                                                                    <td>{element.sensor_data[4].value}</td>
                                                                     <td>{element.last_location_lat}, {element.last_location_long}</td>
                                                                     <td>{element.Time} </td>
-                                                                    <td><span className="badge-dot badge-brand mr-1"></span>InTransit </td>
+                                                                    <td><span className="badge-dot badge-brand mr-1"></span>{(element.sensor_data[0].value) ? 'In Transit' : 'Stopped'} </td>
                                                                 </tr>
                                                             );
                                                         })
